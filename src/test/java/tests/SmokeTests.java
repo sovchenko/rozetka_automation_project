@@ -16,10 +16,10 @@ public class SmokeTests {
     @Description("Verify successful logging of the user")
     public void logInAsUser(String email, String password) {
         String nameOfTheUser = "Тест";
-        open("https://rozetka.com.ua/");
+        open("https://rozetka.com.ua/ua/");
         HomePage homePage = new HomePage();
         homePage.logIn(email, password);
-        Assert.assertEquals(homePage.getNameOfLoggedInUser(nameOfTheUser), nameOfTheUser);
+        Assert.assertEquals(homePage.getNameOfLoggedInUser(), nameOfTheUser);
         homePage.navigateToUserAccount()
                 .logOutUsingLinkInProfile();
 

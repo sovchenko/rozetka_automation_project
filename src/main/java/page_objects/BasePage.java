@@ -5,7 +5,6 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.Data;
 import org.openqa.selenium.By;
-
 import static com.codeborne.selenide.Selenide.$;
 
 public class BasePage {
@@ -21,8 +20,9 @@ public class BasePage {
         $("div.auth-modal__form-bottom > button ").shouldBe(Condition.enabled).click();
     }
 
-    public String getNameOfLoggedInUser(String name) {
-        return topUserAccountLink.waitUntil(Condition.exactTextCaseSensitive(name), 4000).getText();
+    public String getNameOfLoggedInUser() {
+        String defaultText = topUserAccountLink.getText();
+        return topUserAccountLink.waitUntil(Condition.not(Condition.text(defaultText)),4000).getText();
     }
 
     @Step("Navigate to the user account")
@@ -40,7 +40,7 @@ public class BasePage {
     public ListItemPage searchForTheItem(String item) {
         $(By.name("search")).sendKeys(item);
         $("button.button.search-form__submit").click();
-        $("#block_with_search > div > div.g-i-tile-l.clearfix").should(Condition.appear);
+        $("#block_with_search > div > div.g-i-tile-l.clearfix").waitUntil(Condition.visible,5000);
         return new ListItemPage();
     }
 
