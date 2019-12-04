@@ -4,6 +4,6 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class HomePage extends BasePage{
+public class HomePage extends BasePage {
 
 }

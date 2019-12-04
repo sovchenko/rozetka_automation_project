@@ -1,14 +1,16 @@
 package page_objects;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class UserAccountPage extends BasePage{
+public class UserAccountPage extends BasePage {
 
     private SelenideElement signOutLink = $("#profile_signout");
 
-    public void logOutUsingLinkInProfile(){
+    @Step("Log out using link in user's profile")
+    public void logOutUsingLinkInProfile() {
         signOutLink.click();
     }
 }
