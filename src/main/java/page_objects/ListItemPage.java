@@ -3,34 +3,31 @@ package page_objects;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.ex.ElementNotFound;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import versions_of_rozetka.BaseRozetkaVersion;
+import versions_of_rozetka.NewRozetkaVersion;
+import versions_of_rozetka.OldRozetkaVersion;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
 
 public class ListItemPage {
 
     @Step("Verify that term entered in search field is present in title of the first 5 items")
     public boolean verifyThatItemsContainsSearchedTerm(String searchedTerm) {
-        ElementsCollection listOfTheItems = $(By.name("search_list")).findAll("div[data-location='SearchResults']");
-
-        boolean isPresentInItemTitle = false;
-        int indexOfTheLastItemThatShouldBeVerified = 4;
-
-        for (; indexOfTheLastItemThatShouldBeVerified >= 0; indexOfTheLastItemThatShouldBeVerified--) {
-
-            String titleOfTheItem = listOfTheItems.get(indexOfTheLastItemThatShouldBeVerified).
-                    find("div > div > div > div > div.g-i-tile-i-title.clearfix > a").getText()
-                    .toLowerCase();
-
-            if (titleOfTheItem.contains(searchedTerm)) {
-                isPresentInItemTitle = true;
-            } else {
-                System.out.println(titleOfTheItem);
-                break;
-            }
+        boolean isPresent = false;
+        if ($("div.g-i-tile-l.clearfix").exists()) {
+            ElementsCollection itemsInGrid = $("div.g-i-tile-l.clearfix").
+                    findAll("div[data-location='SearchResults'");
+            BaseRozetkaVersion version = new NewRozetkaVersion();
+            isPresent = version.isPresentInItemTitle(itemsInGrid, searchedTerm);
+        } else if ($("app-search-goods > ul").exists()) {
+            ElementsCollection itemsInGrid = $$("app-search-goods > ul > li");
+            BaseRozetkaVersion version = new OldRozetkaVersion();
+            isPresent = version.isPresentInItemTitle(itemsInGrid, searchedTerm);
         }
-        return isPresentInItemTitle;
+        return isPresent;
     }
 }
