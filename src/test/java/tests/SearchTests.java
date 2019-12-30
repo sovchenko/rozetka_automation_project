@@ -18,7 +18,7 @@ public class SearchTests {
         val item = "samsung galaxy s8";
         List<String> titlesOfFirstFiveItems = openHomePage()
                 .searchForTheItem(item)
-                .getTitlesOfFirstFiveItems();
+                .getItemTitles(5);
 
         for (String title : titlesOfFirstFiveItems) {
             Assert.assertTrue(title.contains(item));

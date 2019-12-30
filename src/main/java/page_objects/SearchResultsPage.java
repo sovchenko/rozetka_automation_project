@@ -10,20 +10,20 @@ import static com.codeborne.selenide.Selenide.*;
 
 
 public class SearchResultsPage {
-    public List<String> getTitlesOfFirstFiveItems() {
+    public List<String> getItemTitles(int amountOfItems) {
         List<String> titlesOfFirstFiveItems;
         if ($(By.name("search-list")).exists()) {
             titlesOfFirstFiveItems = $$x("//div[@class='g-i-tile-i-title']/a")
                     .stream()
                     .map(SelenideElement::getText)
-                    .limit(5)
+                    .limit(amountOfItems)
                     .collect(Collectors.toList());
         } else {
             titlesOfFirstFiveItems = $$x("//span[@class='goods-tile__title']")
                     .stream()
                     .map(SelenideElement::getText)
                     .map(String::toLowerCase)
-                    .limit(5)
+                    .limit(amountOfItems)
                     .collect(Collectors.toList());
         }
 
