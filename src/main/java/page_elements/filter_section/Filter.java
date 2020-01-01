@@ -14,8 +14,8 @@ public class Filter {
 
     public void selectFilterOption(String filterTitle) {
         for (SelenideElement filter : filterOptions) {
-            String title = filter.find(By.xpath("//label")).getText();
-            if (filterTitle.equalsIgnoreCase(title)) {
+            String optionTitle = filter.find(By.xpath(".//label")).getText();
+            if (optionTitle.contains(filterTitle)) {
                 filter.click();
                 break;
             }

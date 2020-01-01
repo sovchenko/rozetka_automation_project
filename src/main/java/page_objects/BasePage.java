@@ -1,5 +1,6 @@
 package page_objects;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -12,9 +13,6 @@ public abstract class BasePage {
     private String defaultRussianUserPlaceholder = " войдите в личный кабинет ";
     private SelenideElement topUserAccountLink = $("a.header-topline__user-link");
 
-    // called this method this way due to the fact that user can log in on any page
-    // and after logging he will remain on that page
-    // so each logIn method should return instance of certain page
     @Step("Log in as user")
     public HomePage logInFromHomePage(String email, String password) {
         closeBanner();
@@ -52,12 +50,11 @@ public abstract class BasePage {
         return new SearchResultsPage();
     }
 
-    static void closeBanner(){
-        if($(".rz-banner_picture").exists()){
-            $(".exponea-close-cross").waitUntil(visible,3000).click();
+    static void closeBanner() {
+        if ($(".rz-banner_picture").exists()) {
+            $(".exponea-close-cross").waitUntil(visible, 3000).click();
         }
     }
-
 
 
 }
