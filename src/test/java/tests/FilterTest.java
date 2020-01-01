@@ -10,16 +10,7 @@ import page_objects.HomePage;
 import lombok.val;
 
 public class FilterTest {
-    //open page
-    //select category
-    //select subcategory
-    //select price range
-    //select brand of the phone
-    //select third item (save title, price and amount of stars)
-    //verify that on the new page same phone and it has same price
-    //verify that amount of the stars is the same
 
-    //name of the test should be enhanced
     @BeforeMethod
     public void setup() {
         Selenide.clearBrowserCookies();
@@ -51,12 +42,6 @@ public class FilterTest {
 
     @Test
     public void verifyThatAmountOfReviewsOnItemPageIsTheSameAsOnListItemsPage() {
-        //log in
-        //enter ipad 16gb
-        // verify that title of the search result contains ipad 16gb
-        //open item
-        // verify that amount of the feedbacks on listpage is the same as on item page
-        // click on feedback link and verify that feedback page is opened
         val searchResultPage = HomePage.openHomePage()
                 .searchForTheItem("samsung s10");
         val searchResultsTitle = searchResultPage.getSearchResultsTitle();

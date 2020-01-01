@@ -1,6 +1,5 @@
 package page_objects;
 
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -9,14 +8,13 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 
 public abstract class BasePage {
-    private String userNamePlaceHolder = " увійдіть в особистий кабінет ";
-    private String defaultRussianUserPlaceholder = " войдите в личный кабинет ";
+    private String ukrLabel = " увійдіть в особистий кабінет ";
+    private String rusLabel = " войдите в личный кабинет ";
     private SelenideElement topUserAccountLink = $("a.header-topline__user-link");
 
     @Step("Log in as user")
     public HomePage logInFromHomePage(String email, String password) {
-        closeBanner();
-        topUserAccountLink.shouldBe(enabled).click();
+        topUserAccountLink.click();
         $("#auth_email").sendKeys(email);
         $("#auth_pass").sendKeys(password);
         $(".auth-modal__remember-checkbox").click();
@@ -27,17 +25,16 @@ public abstract class BasePage {
     public String getNameOfLoggedInUser() {
 
         return topUserAccountLink
-                .waitUntil(not(text(defaultRussianUserPlaceholder)), 4000)
-                .waitUntil(not(text(userNamePlaceHolder)), 4000)
+                .waitUntil(not(text(rusLabel)), 4000)
+                .waitUntil(not(text(ukrLabel)), 4000)
                 .getText();
     }
 
     @Step("Navigate to the user account")
-    public UserAccountPage navigateToUserAccount() {
-        closeBanner();
+    public UserAccountPage navigateToUserAccountPage(){
         topUserAccountLink
-                .shouldNot(text(userNamePlaceHolder).because("user should be logged in"))
-                .shouldNot(text(defaultRussianUserPlaceholder).because("user should be logged in"))
+                .shouldNot(text(ukrLabel).because("user should be logged in"))
+                .shouldNot(text(rusLabel).because("user should be logged in"))
                 .hover()
                 .click();
         return new UserAccountPage();
@@ -49,12 +46,5 @@ public abstract class BasePage {
         $("button.button.search-form__submit").click();
         return new SearchResultsPage();
     }
-
-    static void closeBanner() {
-        if ($(".rz-banner_picture").exists()) {
-            $(".exponea-close-cross").waitUntil(visible, 3000).click();
-        }
-    }
-
 
 }

@@ -12,7 +12,6 @@ public class UserAccountPage extends BasePage {
 
     @Step("Log out using link in user's profile")
     public void logOutUsingLinkInProfile() {
-        BasePage.closeBanner();
         signOutLink.click();
     }
 }
