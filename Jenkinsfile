@@ -17,7 +17,7 @@ pipeline{
       steps{
         //some steps related to the test phase go here
         echo 'this is test stage'
-        sh 'mvn clean test'
+        sh 'mvn clean test -Dselenide.baseUrl=http://localhost:8080'
       }
 
       post{
