@@ -21,8 +21,10 @@ pipeline{
     }
 
     stage('Deploy'){
-      //steps related to the deploy phase should be here
-      echo 'this is deploy stage'
+      stepd{
+        echo 'this is deploy stage'
+
+      }
     }
   }
 }
