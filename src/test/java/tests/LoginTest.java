@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.clearBrowserCookies;
 import static org.testng.Assert.*;
 import static page_objects.HomePage.openHomePage;
 
-public class LoginTests {
+public class LoginTest {
     @BeforeMethod
     public void setUp() {
         clearBrowserCookies();

@@ -1,6 +1,5 @@
 package page_objects;
 
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import lombok.Getter;
@@ -11,6 +10,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 @Getter
 public abstract class BasePage {
+
     private SelenideElement topUserAccountLink = $("a.header-topline__user-link");
 
     @Step("Log in as user")
@@ -32,7 +32,6 @@ public abstract class BasePage {
     @Step("Navigate to the user account")
     public UserAccountPage navigateToUserAccount() {
         topUserAccountLink.hover().click();
-
         return new UserAccountPage();
     }
 
@@ -42,6 +41,4 @@ public abstract class BasePage {
         $("button.button.search-form__submit").click();
         return new SearchResultsPage();
     }
-
-
 }

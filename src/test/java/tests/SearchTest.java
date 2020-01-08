@@ -8,14 +8,12 @@ import java.util.List;
 
 import static page_objects.HomePage.openHomePage;
 
-public class SearchTests {
-    // open page
-    // search for item
-    // get list of the items title
-    // verify that first five item title have searched term
+public class SearchTest {
+
     @Test
     public void verifyThatSearchedTermIsPresentInItemTitle() {
         val item = "iPhone 11";
+
         List<String> titlesOfFirstFiveItems = openHomePage()
                 .searchForTheItem(item)
                 .getItemTitles(5);
@@ -23,5 +21,7 @@ public class SearchTests {
         for (String title : titlesOfFirstFiveItems) {
             Assert.assertTrue(title.contains(item));
         }
+        // titlesOfFirstFiveItems.forEach(string -> Assert.assertTrue(string.contains(item)));
+        // or harmcrest matchers
     }
 }
