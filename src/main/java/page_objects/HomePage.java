@@ -11,13 +11,10 @@ import static com.codeborne.selenide.Selenide.*;
 public class HomePage extends BasePage {
 
     private SelenideElement getCategory(ElementsCollection collection, String categoryTitle) {
-        SelenideElement category = null;
-        for (SelenideElement element : collection) {
-            if (element.getAttribute("href").contains(categoryTitle)) {
-                category = element;
-                break;
-            }
-        }
+        SelenideElement category = collection.stream()
+                .filter(element -> element.getAttribute("href").contains(categoryTitle))
+                .findFirst()
+                .get();
 
         return category;
     }
@@ -25,7 +22,8 @@ public class HomePage extends BasePage {
     @Step("Open home page")
     public static HomePage openHomePage() {
         open("https://rozetka.com.ua/");
-
+        //sleep is very bad practice
+        //but without it I constantly have StaleElementExeption error
         Selenide.sleep(2000);
         return new HomePage();
     }

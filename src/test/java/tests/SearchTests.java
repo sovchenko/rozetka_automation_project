@@ -15,7 +15,7 @@ public class SearchTests {
     // verify that first five item title have searched term
     @Test
     public void verifyThatSearchedTermIsPresentInItemTitle() {
-        val item = "samsung galaxy s8";
+        val item = "iPhone 11";
         List<String> titlesOfFirstFiveItems = openHomePage()
                 .searchForTheItem(item)
                 .getItemTitles(5);

@@ -1,8 +1,8 @@
 package page_objects;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
-import page_elements.items_grid.ItemsGrid;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,30 +10,25 @@ import java.util.stream.Collectors;
 import static com.codeborne.selenide.Selenide.*;
 
 
-public class SearchResultsPage extends ListItemsPage{
+public class SearchResultsPage extends ListItemsPage {
 
     public List<String> getItemTitles(int amountOfItems) {
-        List<String> titlesOfFirstFiveItems;
+        ElementsCollection element;
         if ($(By.name("search-list")).exists()) {
-            titlesOfFirstFiveItems = $$x("//div[@class='g-i-tile-i-title']/a")
-                    .stream()
-                    .map(SelenideElement::getText)
-                    .limit(amountOfItems)
-                    .collect(Collectors.toList());
+            element = $$x("//div[@class='g-i-tile-i-title']/a");
         } else {
-            titlesOfFirstFiveItems = $$x("//span[@class='goods-tile__title']")
-                    .stream()
-                    .map(SelenideElement::getText)
-                    .map(String::toLowerCase)
-                    .limit(amountOfItems)
-                    .collect(Collectors.toList());
+            element = $$x("//span[@class='goods-tile__title']");
         }
 
-        return titlesOfFirstFiveItems;
+        return element.stream()
+                .map(SelenideElement::getText)
+                .limit(amountOfItems)
+                .collect(Collectors.toList());
+
     }
 
-    public String getSearchResultsTitle(){
-        return $x("//h1[@class='catalog-heading']").getText().replaceAll("[«,»]","");
+    public String getSearchResultsTitle() {
+        return $x("//h1[@class='catalog-heading']").getText().replaceAll("[«,»]", "");
     }
 
 }

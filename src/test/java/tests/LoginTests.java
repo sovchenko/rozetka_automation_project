@@ -18,14 +18,14 @@ public class LoginTests {
     @Test
     public void verifySuccessfulLogIn() {
         val expectedUserName = "Тест";
-        val userNamePlaceholder = "увійдіть в особистий кабінет";
+        val loginLinkLabel = "увійдіть в особистий кабінет";
         val homePage = openHomePage()
-                .logInFromHomePage("ezbooksforme@gmail.com", "Pa55word");
+                .logIn("ezbooksforme@gmail.com", "Pa55word");
         val nameOfLoggedInUser = homePage.getNameOfLoggedInUser();
         assertEquals(nameOfLoggedInUser, expectedUserName);
 
         homePage.navigateToUserAccount().logOutUsingLinkInProfile();
-        Assert.assertEquals(homePage.getNameOfLoggedInUser(), userNamePlaceholder);
+        Assert.assertEquals(homePage.getNameOfLoggedInUser(), loginLinkLabel);
 
     }
 

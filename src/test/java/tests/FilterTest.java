@@ -33,19 +33,21 @@ public class FilterTest {
         val listItemsPage = HomePage.openHomePage()
                 .selectGoodSubcategory("telefony", "smartfon")
                 .setPriceRange(1600, 10000)
-                .selectFilter("Производитель", "Apple");
+                .selectFilter("Производитель", "LG");
 
-        String expectedTitle = listItemsPage.getItemName(2);
-        int expectedPrice = listItemsPage.getItemPrice(2);
-        String expectedRate = listItemsPage.getItemRate(2);
+        String expectedTitle = listItemsPage.getItemName(0);
+        int expectedPrice = listItemsPage.getItemPrice(0);
+        String expectedRate = listItemsPage.getItemRate(0);
 
-        val itemPage = listItemsPage.openItemsPage(2);
+        val itemPage = listItemsPage.openItemsPage(0);
         String actualTitle = itemPage.getItemTitle();
         int actualPrice = itemPage.getItemPrice();
         String actualRate = itemPage.getItemRate();
+//        Selenide.sleep(20000);
 
         Assert.assertEquals(actualPrice, expectedPrice);
         Assert.assertEquals(actualTitle, expectedTitle);
+
         //Assert.assertEquals(actualRate,expectedRate);
     }
 

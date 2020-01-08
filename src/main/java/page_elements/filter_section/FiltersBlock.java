@@ -13,22 +13,20 @@ public class FiltersBlock {
     private List<Filter> availableFilters = new ArrayList<>();
 
     public FiltersBlock(ElementsCollection filters) {
-        for (SelenideElement element : filters) {
-            Filter filter = new Filter();
-            filter.setFilterTitle(element.find(By.xpath(".//button[@class='sidebar-block__toggle']")).getText());
-            filter.setFilterOptions(element.findAll(By.xpath(".//a[@class='checkbox-filter__link']")));
-            availableFilters.add(filter);
-        }
+        filters.stream()
+                .forEach(filterElement -> {
+                    Filter filter = new Filter();
+                    filter.setFilterTitle(filterElement.find(By.xpath(".//button[@class='sidebar-block__toggle']")).getText());
+                    filter.setFilterOptions(filterElement.findAll((By.xpath(".//a[@class='checkbox-filter__link']"))));
+                    availableFilters.add(filter);
+                });
 
     }
 
     public void selectFilter(String filterTitle, String filterOptionTitle) {
-        for (Filter filter : availableFilters) {
-            if (filter.getFilterTitle().contains(filterTitle)) {
-                filter.selectFilterOption(filterOptionTitle);
-                break;
-            }
-        }
+        availableFilters.stream()
+                .filter(s -> s.getFilterTitle().contains(filterTitle))
+                .forEach(s -> s.selectFilterOption(filterOptionTitle));
     }
 
 }
