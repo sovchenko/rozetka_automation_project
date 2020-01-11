@@ -1,17 +1,29 @@
-package page_objects;
+package com.softserveinc.atqc.page_elements;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import com.softserveinc.atqc.page_objects.HomePage;
+import com.softserveinc.atqc.page_objects.ProductSearchResultPage;
+import com.softserveinc.atqc.page_objects.UserAccountPage;
 import io.qameta.allure.Step;
 import lombok.Getter;
-import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.attribute;
+import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Selenide.$;
-
 @Getter
-public abstract class BasePage {
-
+public class Header {
     private SelenideElement topUserAccountLink = $("a.header-topline__user-link");
+
+    @Step("Enter text to the search field and press 'Знайти' button")
+    public ProductSearchResultPage searchForProduct(String productName){
+        SelenideElement searchField = $("input.search-form__input");
+        searchField.clear();
+        searchField.sendKeys(productName);
+        $("button.search-form__submit").click();
+
+        return new ProductSearchResultPage();
+    }
 
     @Step("Log in as user")
     public HomePage logIn(String email, String password) {
@@ -24,7 +36,7 @@ public abstract class BasePage {
         return new HomePage();
     }
 
-    public String getNameOfLoggedInUser() {
+    public String getLoggedInUserName() {
         return topUserAccountLink.getText();
     }
 
@@ -33,12 +45,5 @@ public abstract class BasePage {
     public UserAccountPage navigateToUserAccount() {
         topUserAccountLink.hover().click();
         return new UserAccountPage();
-    }
-
-    @Step("Enter text to the search field and press 'Знайти' button")
-    public SearchResultsPage searchForTheItem(String item) {
-        $(By.name("search")).sendKeys(item);
-        $("button.button.search-form__submit").click();
-        return new SearchResultsPage();
     }
 }

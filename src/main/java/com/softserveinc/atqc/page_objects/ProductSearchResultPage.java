@@ -1,16 +1,13 @@
-package page_objects;
+package com.softserveinc.atqc.page_objects;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
-
 import java.util.List;
 import java.util.stream.Collectors;
-
 import static com.codeborne.selenide.Selenide.*;
 
-
-public class SearchResultsPage extends ListItemsPage {
+public class ProductSearchResultPage extends ProductsListPage {
 
     public List<String> getItemTitles(int amountOfItems) {
         ElementsCollection element;

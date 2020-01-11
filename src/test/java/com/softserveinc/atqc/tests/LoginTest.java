@@ -1,13 +1,12 @@
-package tests;
+package com.softserveinc.atqc.tests;
 
+import com.softserveinc.atqc.page_objects.HomePage;
 import lombok.val;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import static com.codeborne.selenide.Selenide.clearBrowserCookies;
 import static org.testng.Assert.*;
-import static page_objects.HomePage.openHomePage;
 
 public class LoginTest {
     @BeforeMethod
@@ -19,15 +18,15 @@ public class LoginTest {
     public void verifySuccessfulLogIn() {
         val expectedUserName = "Тест";
         val loginLinkLabel = "увійдіть в особистий кабінет";
-        val homePage = openHomePage()
+        val homePage = new HomePage()
+                .openHomePage()
+                .getHeader()
                 .logIn("ezbooksforme@gmail.com", "Pa55word");
-        val nameOfLoggedInUser = homePage.getNameOfLoggedInUser();
+        val nameOfLoggedInUser = homePage.getHeader().getLoggedInUserName();
         assertEquals(nameOfLoggedInUser, expectedUserName);
 
-        homePage.navigateToUserAccount().logOutUsingLinkInProfile();
-        Assert.assertEquals(homePage.getNameOfLoggedInUser(), loginLinkLabel);
-
+        homePage.getHeader().navigateToUserAccount().logOutUsingLinkInProfile();
+        val defaultLabel = homePage.getHeader().getLoggedInUserName();
+        Assert.assertEquals(defaultLabel, loginLinkLabel);
     }
-
-
 }
