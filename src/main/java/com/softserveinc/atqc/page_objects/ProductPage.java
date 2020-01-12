@@ -11,7 +11,9 @@ public class ProductPage {
     private SelenideElement reviewsTab = $x("//a[@class='product__rating-reviews']");
 
     public int getItemPrice() {
-        return Integer.parseInt($("p.product-prices__big").getText().replaceAll("\\D", ""));
+        return Integer.parseInt($("p.product-prices__big")
+                .getText()
+                .replaceAll("\\D", ""));
     }
 
     public String getItemTitle() {
@@ -23,12 +25,13 @@ public class ProductPage {
     }
 
     public int getReviewsAmount() {
-        return Integer.parseInt(reviewsTab.getText().replaceAll("\\D", ""));
+        return Integer.parseInt(reviewsTab
+                .getText()
+                .replaceAll("\\D", ""));
     }
 
     public ProductReviewsTab openReviewsTab() {
         reviewsTab.click();
-        //return created object or find another solution
         return new ProductReviewsTab();
     }
 }
