@@ -28,6 +28,6 @@ public class LoginTest {
 
         homePage.getHeader().navigateToUserAccount().logOutUsingLinkInProfile();
         val defaultLabel = homePage.getHeader().getLoggedInUserName();
-        Assert.assertEquals(defaultLabel, loginLinkLabel);
+        assertEquals(defaultLabel, loginLinkLabel);
     }
 }
