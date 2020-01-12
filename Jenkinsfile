@@ -6,9 +6,7 @@ pipeline{
   stages{
     stage('Build'){
       steps{
-        // steps that should be performed during build phase
 
-        // sh - is a pipeline step that executes give shell command sh 'shell-command'
         echo 'This is build stage.'
       }
     }
@@ -21,8 +19,9 @@ pipeline{
     }
 
     stage('Deploy'){
-      //steps related to the deploy phase should be here
-      echo 'this is deploy stage'
+      steps{
+            echo 'this is deploy stage'
+      }
     }
   }
 }
