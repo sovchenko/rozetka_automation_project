@@ -3,11 +3,14 @@ pipeline{
   options{
     skipStagesAfterUnstable()
   }
+  triggers{
+    cron(45 22 * * *)
+  }
   stages{
     stage('Build'){
       steps{
-
         echo 'This is build stage.'
+        input
       }
     }
 
@@ -15,7 +18,6 @@ pipeline{
       steps{
         //some steps related to the test phase go here
         echo 'this is test stage'
-        sh "mvn clean test -Dselenide.startMaximized=true"
       }
     }
 
@@ -23,6 +25,10 @@ pipeline{
       steps{
             echo 'this is deploy stage'
       }
+    }
+
+    posts{
+        echo 'inside the posts section'
     }
   }
 }
