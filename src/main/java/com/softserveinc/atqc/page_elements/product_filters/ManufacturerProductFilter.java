@@ -1,6 +1,5 @@
 package com.softserveinc.atqc.page_elements.product_filters;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.softserveinc.atqc.page_objects.ProductsListPage;
 import io.qameta.allure.Step;
@@ -14,39 +13,37 @@ public class ManufacturerProductFilter {
         SelenideElement manufacturerCheckbox = $x("//a[@class='checkbox-filter__link' and contains(@href,'producer="
                 + manufacturer.toLowerCase()
                 + "')]");
-
         manufacturerCheckbox.click();
-//        $x("//ul[@class='catalog-grid']").waitUntil(Condition.enabled,2000);
 
         return new ProductsListPage();
     }
 
-    public ManufacturerProductFilter searchManufacturer(String manufacturer){
+    public ManufacturerProductFilter searchManufacturer(String manufacturer) {
         $x("//input[@name='searchline']").sendKeys(manufacturer);
         return this;
     }
 
-    public ManufacturerProductFilter expandManufacturerFilter(){
+    public ManufacturerProductFilter expandManufacturerFilter() {
         $x("//button[contains(text(),'Виробник') or contains(text(),'Производитель')]").click();
         return this;
     }
 
-    public ManufacturerProductFilter hideManufacturerFilter(){
+    public ManufacturerProductFilter hideManufacturerFilter() {
         return expandManufacturerFilter();
     }
 
-    public ManufacturerProductFilter expandAlphabetMenu(){
+    public ManufacturerProductFilter expandAlphabetMenu() {
         $("button.sidebar-alphabet__toggle").click();
 
         return this;
     }
 
-    public ManufacturerProductFilter hideAlphabetMenu(){
+    public ManufacturerProductFilter hideAlphabetMenu() {
         return expandAlphabetMenu();
     }
 
-    public ManufacturerProductFilter selectSymbolInAlphabetMenu(String symbol){
-        $x("//a[@class='sidebar-alphabet__glyph' and text()=" + symbol +"]").click();
+    public ManufacturerProductFilter selectSymbolInAlphabetMenu(String symbol) {
+        $x("//a[@class='sidebar-alphabet__glyph' and text()=" + symbol + "]").click();
 
         return this;
     }

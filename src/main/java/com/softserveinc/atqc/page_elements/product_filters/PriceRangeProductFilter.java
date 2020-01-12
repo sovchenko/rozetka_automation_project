@@ -18,7 +18,7 @@ public class PriceRangeProductFilter {
     }
 
     @Step("Set price range for products")
-    public ProductsListPage setProductPriceRange(int min, int max){
+    public ProductsListPage setProductPriceRange(int min, int max) {
         SelenideElement minField = $x("//input[@formcontrolname='min']");
         minField.clear();
         minField.sendKeys(Integer.toString(min));

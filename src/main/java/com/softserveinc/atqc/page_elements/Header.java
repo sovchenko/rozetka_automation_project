@@ -1,6 +1,5 @@
 package com.softserveinc.atqc.page_elements;
 
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.softserveinc.atqc.page_objects.HomePage;
 import com.softserveinc.atqc.page_objects.ProductSearchResultPage;
@@ -11,12 +10,13 @@ import lombok.Getter;
 import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Selenide.$;
+
 @Getter
 public class Header {
     private SelenideElement topUserAccountLink = $("a.header-topline__user-link");
 
     @Step("Enter text to the search field and press 'Знайти' button")
-    public ProductSearchResultPage searchForProduct(String productName){
+    public ProductSearchResultPage searchForProduct(String productName) {
         SelenideElement searchField = $("input.search-form__input");
         searchField.clear();
         searchField.sendKeys(productName);
@@ -33,13 +33,13 @@ public class Header {
         $(".auth-modal__remember-checkbox").click();
         $("div.auth-modal__form-bottom > button ").shouldBe(enabled).click();
         topUserAccountLink.shouldHave(attribute("href", "https://my.rozetka.com.ua/profile/personal-information"));
+
         return new HomePage();
     }
 
     public String getLoggedInUserName() {
         return topUserAccountLink.getText();
     }
-
 
     @Step("Navigate to the user account")
     public UserAccountPage navigateToUserAccount() {

@@ -3,7 +3,9 @@ package com.softserveinc.atqc.tests;
 import com.softserveinc.atqc.page_objects.HomePage;
 import lombok.val;
 import org.testng.annotations.Test;
+
 import java.util.List;
+
 import static org.testng.Assert.*;
 
 public class SearchTest {

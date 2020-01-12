@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import com.softserveinc.atqc.page_objects.HomePage;
 import lombok.val;
+
 import static org.testng.Assert.*;
 
 public class ProductFilterTest {
@@ -18,7 +19,7 @@ public class ProductFilterTest {
     }
 
     @Test
-    public void verifyThatFilteredItemHasCorrectPriceAndTitle(){
+    public void verifyThatFilteredItemHasCorrectPriceAndTitle() {
         val productTile = new HomePage()
                 .openHomePage()
                 .hoverMenuCategory("telefony")
@@ -26,7 +27,7 @@ public class ProductFilterTest {
                 .getManufacturerProductFilter()
                 .selectManufacturer("Alcatel")
                 .getPriceRangeProductFilter()
-                .setProductPriceRange(500,1500)
+                .setProductPriceRange(500, 1500)
                 .getTiles(1)
                 .get(0);
 
@@ -34,13 +35,13 @@ public class ProductFilterTest {
         val expectedPrice = productTile.getProductPrice();
         val productPage = productTile.openProductPage();
 
-        assertEquals(expectedPrice,productPage.getItemPrice());
+        assertEquals(expectedPrice, productPage.getItemPrice());
         assertEquals(expectedTitle, productPage.getItemTitle());
     }
 
 
     @Test
-    public void verifyThatAmountOfReviewsOnItemPageIsTheSameAsOnListItemsPage(){
+    public void verifyThatAmountOfReviewsOnItemPageIsTheSameAsOnListItemsPage() {
         val searchResultPage = new HomePage()
                 .openHomePage()
                 .getHeader()
@@ -49,19 +50,19 @@ public class ProductFilterTest {
         val searchResultsTitle = searchResultPage.getSearchResultsTitle();
         assertTrue(searchResultsTitle.contains("s10"));
 
-         val reviewsAmountOnSearchResultPage = searchResultPage
-                 .getTiles(1)
-                 .get(0)
-                 .getReviewsAmount();
+        val reviewsAmountOnSearchResultPage = searchResultPage
+                .getTiles(1)
+                .get(0)
+                .getReviewsAmount();
 
-         val productPage = searchResultPage
-                 .getTiles(1)
-                 .get(0)
-                 .openProductPage();
+        val productPage = searchResultPage
+                .getTiles(1)
+                .get(0)
+                .openProductPage();
 
-         assertEquals(reviewsAmountOnSearchResultPage,productPage.getReviewsAmount());
+        assertEquals(reviewsAmountOnSearchResultPage, productPage.getReviewsAmount());
 
-         val reviewSectionTitle = productPage.openReviewsTab().getReviewTabTitle();
-         assertEquals(reviewSectionTitle, "Отзывы покупателей о " + productPage.getItemTitle() + " " + productPage.getReviewsAmount() );
+        val reviewSectionTitle = productPage.openReviewsTab().getReviewTabTitle();
+        assertEquals(reviewSectionTitle, "Отзывы покупателей о " + productPage.getItemTitle() + " " + productPage.getReviewsAmount());
     }
 }

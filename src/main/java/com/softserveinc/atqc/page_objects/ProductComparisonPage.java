@@ -1,5 +1,5 @@
 package com.softserveinc.atqc.page_objects;
 
-public class ComparisonPage {
+public class ProductComparisonPage {
     // for extension purpose
 }

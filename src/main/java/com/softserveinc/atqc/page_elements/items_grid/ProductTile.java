@@ -1,8 +1,8 @@
 package com.softserveinc.atqc.page_elements.items_grid;
 
 import com.codeborne.selenide.SelenideElement;
+import com.softserveinc.atqc.page_elements.product_page_elements.ProductReviewsTab;
 import com.softserveinc.atqc.page_objects.*;
-import jdk.nashorn.internal.objects.annotations.Where;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,43 +18,37 @@ public class ProductTile {
     private SelenideElement addToComparisonButton;
     private SelenideElement productReviewsLink;
 
-    public String getProductTitle(){
+    public String getProductTitle() {
         return productLink.getText();
     }
 
-    public ProductPage openProductPage(){
+    public ProductPage openProductPage() {
         productLink.click();
         return new ProductPage();
     }
 
-    public CheckoutModalPage buyProduct(){
+    public CheckoutModalPage buyProduct() {
         shoppingCartButton.click();
         return new CheckoutModalPage();
     }
 
-    public WishListPage addProductToWishList(){
+    public WishListPage addProductToWishList() {
         addToWishListButton.click();
         return new WishListPage();
     }
 
-    public ReviewsPage openProductReviews(){
+    public ProductReviewsTab openProductReviews() {
         productReviewsLink.click();
-        return new ReviewsPage();
+        return new ProductReviewsTab();
     }
 
-    public ComparisonPage addProductToComparison(){
+    public ProductComparisonPage addProductToComparison() {
         addToComparisonButton.click();
-        return new ComparisonPage();
+        return new ProductComparisonPage();
     }
 
-    public int getReviewsAmount(){
-        return Integer.parseInt(productReviewsLink.getText().replaceAll("\\D",""));
+    public int getReviewsAmount() {
+        return Integer.parseInt(productReviewsLink.getText().replaceAll("\\D", ""));
     }
-
-
-
-
-
-
 
 }
