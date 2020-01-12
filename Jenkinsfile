@@ -9,8 +9,8 @@ pipeline{
   stages{
     stage('Build'){
       steps{
+
         echo 'This is build stage.'
-        input
       }
     }
 
