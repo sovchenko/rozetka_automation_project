@@ -20,11 +20,13 @@ public class HomePage extends BasePage {
         return new HomePage();
     }
 
+    @Step("Select product category in menu")
     public HomePage hoverMenuCategory(String category){
         $x("//a[@class='menu-categories__link' and contains(@href,'" + category +"')]").hover();
         return this;
     }
 
+    @Step("Select product subcategory in menu")
     public ProductsListPage selectProductSubcategory(String subcategory){
         $x("//a[@class='menu__link' and contains(@href,'" + subcategory +"')]" ).click();
         return new ProductsListPage();

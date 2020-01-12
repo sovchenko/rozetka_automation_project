@@ -2,6 +2,8 @@ package com.softserveinc.atqc.page_elements.product_filters;
 
 import com.codeborne.selenide.SelenideElement;
 import com.softserveinc.atqc.page_objects.ProductsListPage;
+import io.qameta.allure.Step;
+
 import static com.codeborne.selenide.Selenide.$x;
 
 public class PriceRangeProductFilter {
@@ -15,6 +17,7 @@ public class PriceRangeProductFilter {
         return hidePriceRangeProductFilter();
     }
 
+    @Step("Set price range for products")
     public ProductsListPage setProductPriceRange(int min, int max){
         SelenideElement minField = $x("//input[@formcontrolname='min']");
         minField.clear();

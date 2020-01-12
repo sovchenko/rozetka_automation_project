@@ -3,17 +3,21 @@ package com.softserveinc.atqc.page_elements.product_filters;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.softserveinc.atqc.page_objects.ProductsListPage;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.*;
 
 public class ManufacturerProductFilter {
 
+    @Step("Select manufacturer")
     public ProductsListPage selectManufacturer(String manufacturer) {
         SelenideElement manufacturerCheckbox = $x("//a[@class='checkbox-filter__link' and contains(@href,'producer="
                 + manufacturer.toLowerCase()
                 + "')]");
 
         manufacturerCheckbox.click();
+//        $x("//ul[@class='catalog-grid']").waitUntil(Condition.enabled,2000);
+
         return new ProductsListPage();
     }
 
@@ -24,7 +28,6 @@ public class ManufacturerProductFilter {
 
     public ManufacturerProductFilter expandManufacturerFilter(){
         $x("//button[contains(text(),'Виробник') or contains(text(),'Производитель')]").click();
-
         return this;
     }
 

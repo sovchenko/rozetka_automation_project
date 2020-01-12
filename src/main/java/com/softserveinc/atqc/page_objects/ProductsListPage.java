@@ -16,7 +16,6 @@ public class ProductsListPage {
 
     public List<ProductTile> getTiles(int amount) {
         List<ProductTile> productTiles = new ArrayList<>();
-        sleep(1000);
             ElementsCollection productTileElements = $$x("//div[@class='goods-tile']");
             productTileElements
                     .first(amount)
