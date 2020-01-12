@@ -15,6 +15,7 @@ pipeline{
       steps{
         //some steps related to the test phase go here
         echo 'this is test stage'
+        sh "mvn clean test -Dselenide.startMaximized=true"
       }
     }
 
