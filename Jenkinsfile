@@ -105,6 +105,8 @@ pipeline{
   }
 
   post{
-      echo 'inside the post section of the entire pipeline'
+    always{
+        echo 'inside the post section of the entire pipeline'
+    }  
   }
 }
