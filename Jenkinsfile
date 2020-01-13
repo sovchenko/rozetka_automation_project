@@ -102,9 +102,9 @@ pipeline{
         }
       }
     }
+  }
 
-    post{
-        echo 'inside the posts section'
-    }
+  post{
+      echo 'inside the post section of the entire pipeline'
   }
 }
