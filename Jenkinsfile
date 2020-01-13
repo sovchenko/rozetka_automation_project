@@ -56,7 +56,6 @@ pipeline{
 
       steps{
         sh 'maven compile'
-        input message: 'Continue build stage?', ok: "Sure Thing!", submitter: 'admin'
         echo 'This is build stage.'
       }
 
