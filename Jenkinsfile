@@ -69,7 +69,7 @@ pipeline{
             // states are true
             // there is similar construction allOf, in such cases all of the states should be true
             branch 'decomp'
-            environment name 'USERNAME', value 'Serhii Ovchenko'
+            environment name: 'USERNAME', value: 'Serhii Ovchenko'
         }
 
         not{
