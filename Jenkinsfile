@@ -39,7 +39,7 @@ pipeline{
     //for this trigger webhook on GitHub should be set
     //githubPush()
 
-    cron(30 0 * * 1-5)
+    cron(30 1 * * 1-5)
 
     //following trigger starts after finishing 'jobA'  and 'jobB' with SUCCESS status in Jenkins
     // upstream(upstreamProjects: 'jobA,jobB', threshold: hudson.model.Result.SUCCESS)
