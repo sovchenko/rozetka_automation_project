@@ -6,7 +6,7 @@ pipeline{
   stages{
     stage('Build'){
       steps{
-
+        
         echo 'This is build stage.'
       }
     }
@@ -14,11 +14,21 @@ pipeline{
     stage('Test'){
       steps{
         echo 'this is test stage'
+        sh 'mvn clean test -Dselenide.baseUrl=http://localhost:9090'
+      }
+
+      post{
+        always{
+            echo 'this is always'
+        }
       }
     }
 
     stage('Deploy'){
-      echo 'this is deploy stage'
+      steps{
+        echo 'this is deploy stage'
+
+      }
     }
   }
 }
