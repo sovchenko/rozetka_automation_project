@@ -6,6 +6,7 @@ import com.softserveinc.atqc.page_objects.ProductSearchResultPage;
 import com.softserveinc.atqc.page_objects.UserAccountPage;
 import io.qameta.allure.Step;
 import lombok.Getter;
+import lombok.val;
 
 import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.enabled;
@@ -15,11 +16,10 @@ import static com.codeborne.selenide.Selenide.$;
 public class Header {
     private SelenideElement topUserAccountLink = $("a.header-topline__user-link");
 
-    @Step("Enter text to the search field and press 'Знайти' button")
+    @Step("Enter text to the search field and press 'Find' button")
     public ProductSearchResultPage searchForProduct(String productName) {
-        SelenideElement searchField = $("input.search-form__input");
-        searchField.clear();
-        searchField.sendKeys(productName);
+        val searchField = $("input.search-form__input");
+        searchField.setValue(productName);
         $("button.search-form__submit").click();
 
         return new ProductSearchResultPage();
@@ -28,8 +28,8 @@ public class Header {
     @Step("Log in as user")
     public HomePage logIn(String email, String password) {
         topUserAccountLink.shouldBe(enabled).click();
-        $("#auth_email").sendKeys(email);
-        $("#auth_pass").sendKeys(password);
+        $("#auth_email").setValue(email);
+        $("#auth_pass").setValue(password);
         $(".auth-modal__remember-checkbox").click();
         $("div.auth-modal__form-bottom > button ").shouldBe(enabled).click();
         topUserAccountLink.shouldHave(attribute("href", "https://my.rozetka.com.ua/profile/personal-information"));
@@ -44,6 +44,7 @@ public class Header {
     @Step("Navigate to the user account")
     public UserAccountPage navigateToUserAccount() {
         topUserAccountLink.hover().click();
+
         return new UserAccountPage();
     }
 }

@@ -13,8 +13,10 @@ public class UserAccountPage extends BasePage {
     private Header header = new Header();
 
     @Step("Log out using link in user's profile")
-    public void logOutUsingLinkInProfile() {
+    public void logOutUsingProfileLink() {
         signOutLink.click();
-        header.getTopUserAccountLink().shouldHave(attribute("href", "https://rozetka.com.ua/ua/#"));
+        header.getTopUserAccountLink().
+                shouldHave(
+                        attribute("href", "https://rozetka.com.ua/ua/#"));
     }
 }

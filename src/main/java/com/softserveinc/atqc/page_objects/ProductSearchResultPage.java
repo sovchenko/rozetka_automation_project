@@ -8,11 +8,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Selenide.*;
+import static java.util.stream.Collectors.toList;
 
 public class ProductSearchResultPage extends ProductsListPage {
 
     public List<String> getItemTitles(int amountOfItems) {
         ElementsCollection element;
+        //there are two possible versions of the application
+        //each has different locators
         if ($(By.name("search-list")).exists()) {
             element = $$x("//div[@class='g-i-tile-i-title']/a");
         } else {
@@ -22,11 +25,12 @@ public class ProductSearchResultPage extends ProductsListPage {
         return element.stream()
                 .map(SelenideElement::getText)
                 .limit(amountOfItems)
-                .collect(Collectors.toList());
+                .collect(toList());
 
     }
 
     public String getSearchResultsTitle() {
+
         return $x("//h1[@class='catalog-heading']").getText().replaceAll("[«,»]", "");
     }
 }

@@ -3,12 +3,16 @@ package com.softserveinc.atqc.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import com.softserveinc.atqc.page_elements.product_filters.product_filter_values.Manufacturers;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import com.softserveinc.atqc.page_objects.HomePage;
 import lombok.val;
 
 import static org.testng.Assert.*;
+import static com.softserveinc.atqc.page_elements.product_filters.product_filter_values.Manufacturers.*;
+import static com.softserveinc.atqc.page_elements.menu.MenuCategories.*;
+import static com.softserveinc.atqc.page_elements.menu.SubmenuCategories.*;
 
 public class ProductFilterTest {
 
@@ -21,13 +25,13 @@ public class ProductFilterTest {
     @Test
     public void verifyThatFilteredItemHasCorrectPriceAndTitle() {
         val productTile = new HomePage()
-                .openHomePage()
-                .hoverMenuCategory("telefony")
-                .selectProductSubcategory("smartfon")
+                .open()
+                .hoverMenuCategory(PhonesTVsElectronics.getCategoryName())
+                .selectProductSubcategory(SmartPhones.getSubcategoryName())
                 .getManufacturerProductFilter()
-                .selectManufacturer("Alcatel")
+                .selectManufacturer(Asus.getName())
                 .getPriceRangeProductFilter()
-                .setProductPriceRange(500, 1500)
+                .setProductPriceRange(500, 15000)
                 .getTiles(1)
                 .get(0);
 
@@ -43,7 +47,7 @@ public class ProductFilterTest {
     @Test
     public void verifyThatAmountOfReviewsOnItemPageIsTheSameAsOnListItemsPage() {
         val searchResultPage = new HomePage()
-                .openHomePage()
+                .open()
                 .getHeader()
                 .searchForProduct("samsung s10");
 

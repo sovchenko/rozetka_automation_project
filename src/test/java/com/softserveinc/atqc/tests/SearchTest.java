@@ -15,7 +15,7 @@ public class SearchTest {
         val item = "iPhone 11";
 
         List<String> titlesOfFirstFiveItems = new HomePage()
-                .openHomePage()
+                .open()
                 .getHeader()
                 .searchForProduct(item)
                 .getItemTitles(5);
