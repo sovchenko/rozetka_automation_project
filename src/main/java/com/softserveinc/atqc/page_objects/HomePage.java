@@ -2,7 +2,6 @@ package com.softserveinc.atqc.page_objects;
 
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
-import lombok.Getter;
 
 import static com.codeborne.selenide.Selenide.*;
 

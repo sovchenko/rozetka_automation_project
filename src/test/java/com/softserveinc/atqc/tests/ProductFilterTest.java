@@ -3,7 +3,6 @@ package com.softserveinc.atqc.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import com.softserveinc.atqc.page_elements.product_filters.product_filter_values.Manufacturers;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import com.softserveinc.atqc.page_objects.HomePage;
