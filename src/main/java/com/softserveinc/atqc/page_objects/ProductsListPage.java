@@ -1,17 +1,18 @@
 package com.softserveinc.atqc.page_objects;
 
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
+import com.softserveinc.atqc.page_elements.items_grid.ProductTile;
 import com.softserveinc.atqc.page_elements.product_filters.ManufacturerProductFilter;
 import com.softserveinc.atqc.page_elements.product_filters.PriceRangeProductFilter;
-import com.softserveinc.atqc.page_elements.items_grid.ProductTile;
 import lombok.val;
 import org.openqa.selenium.By;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.codeborne.selenide.Selenide.*;
-import static java.lang.Integer.*;
+import static com.codeborne.selenide.Selenide.$$x;
+import static java.lang.Integer.parseInt;
 
 public class ProductsListPage {
 
@@ -29,10 +30,13 @@ public class ProductsListPage {
                                     .getText()
                                     .replaceAll("\\D", "")));
 
-                    productTile.setAddToComparisonButton(tileElement.find(By.xpath(".//button[@class='compare-button']")));
-                    productTile.setAddToWishListButton(tileElement.find(By.xpath(".//button[@class='wish-button']")));
+                    val addToComparisonButton = tileElement.find(By.xpath(".//button[@class='compare-button']"));
+                    productTile.setAddToComparisonButton(addToComparisonButton);
+                    val addToWishListButton = tileElement.find(By.xpath(".//button[@class='wish-button']"));
+                    productTile.setAddToWishListButton(addToWishListButton);
 
-                    productTile.setProductAvailable(tileElement.find(By.cssSelector("div.goods-tile__availability"))
+                    val selenideElement = tileElement.find(By.cssSelector("div.goods-tile__availability"));
+                    productTile.setProductAvailable(selenideElement
                             .getAttribute("class")
                             .contains("available"));
 

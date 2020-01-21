@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertTrue;
 
 public class SearchTest {
 
@@ -18,7 +18,7 @@ public class SearchTest {
                 .open()
                 .getHeader()
                 .searchForProduct(item)
-                .getItemTitles(5);
+                .getItemTitles(5); //TODO: you should work with product tile object here
 
         for (String title : titlesOfFirstFiveItems) {
             assertTrue(title.contains(item));
