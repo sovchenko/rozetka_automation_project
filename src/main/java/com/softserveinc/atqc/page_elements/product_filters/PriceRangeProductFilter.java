@@ -4,7 +4,6 @@ import com.softserveinc.atqc.page_objects.ProductsListPage;
 import io.qameta.allure.Step;
 import lombok.val;
 
-
 import static com.codeborne.selenide.Selenide.$x;
 
 public class PriceRangeProductFilter {

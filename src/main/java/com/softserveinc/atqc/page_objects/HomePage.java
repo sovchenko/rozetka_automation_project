@@ -4,8 +4,9 @@ import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
 import lombok.val;
 
-import static com.codeborne.selenide.Selenide.*;
 import static java.lang.String.format;
+import static com.codeborne.selenide.Selenide.$x;
+
 
 public class HomePage extends BasePage {
 
@@ -13,7 +14,7 @@ public class HomePage extends BasePage {
     public HomePage open() {
         Selenide.open("https://rozetka.com.ua/");
 
-        return new HomePage();
+        return new HomePage(); //TODO: no need to create new object
     }
 
     @Step("Hover on product category in menu")

@@ -1,17 +1,18 @@
 package com.softserveinc.atqc.page_objects;
 
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
+import com.softserveinc.atqc.page_elements.items_grid.ProductTile;
 import com.softserveinc.atqc.page_elements.product_filters.ManufacturerProductFilter;
 import com.softserveinc.atqc.page_elements.product_filters.PriceRangeProductFilter;
-import com.softserveinc.atqc.page_elements.items_grid.ProductTile;
 import lombok.val;
 import org.openqa.selenium.By;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.codeborne.selenide.Selenide.*;
-import static java.lang.Integer.*;
+import static com.codeborne.selenide.Selenide.$$x;
+import static java.lang.Integer.parseInt;
 
 public class ProductsListPage {
 
@@ -35,10 +36,11 @@ public class ProductsListPage {
                     val wishListButton = tileElement.find(By.xpath(".//button[@class='wish-button']"));
                     productTile.setAddToWishListButton(wishListButton);
 
-                    val productAvailability = tileElement.find(By.cssSelector("div.goods-tile__availability"))
+                    val productAvailability = tileElement.find(By.cssSelector("div.goods-tile__availability"));
+
+                    productTile.setProductAvailable(productAvailability
                             .getAttribute("class")
-                            .contains("available");
-                    productTile.setProductAvailable(productAvailability);
+                            .contains("available"));
 
                     val productLink = tileElement.find(By.xpath(".//span[@class='goods-tile__title']"));
                     productTile.setProductLink(productLink);

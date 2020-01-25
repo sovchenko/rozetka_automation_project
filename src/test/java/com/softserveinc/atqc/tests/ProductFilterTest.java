@@ -3,14 +3,22 @@ package com.softserveinc.atqc.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 import com.softserveinc.atqc.page_objects.HomePage;
 import lombok.val;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
 
 import static org.testng.Assert.*;
 import static com.softserveinc.atqc.page_elements.product_filters.product_filter_values.Manufacturers.*;
 import static com.softserveinc.atqc.page_elements.menu.MenuCategory.*;
+
+import static com.softserveinc.atqc.page_elements.menu.MenuCategories.PhonesTVsElectronics;
+import static com.softserveinc.atqc.page_elements.menu.SubmenuCategories.SmartPhones;
+import static com.softserveinc.atqc.page_elements.product_filters.product_filter_values.Manufacturers.Asus;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 
 public class ProductFilterTest {
 

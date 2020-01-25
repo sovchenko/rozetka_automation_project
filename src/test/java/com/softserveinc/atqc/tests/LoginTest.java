@@ -6,8 +6,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.clearBrowserCookies;
-import static org.testng.Assert.*;
-
+import static org.testng.Assert.assertEquals;
+//TODO: create parent test runner class
+//TODO: create test suite
 public class LoginTest {
     @BeforeMethod
     public void setUp() {
