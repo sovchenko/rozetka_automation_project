@@ -1,6 +1,8 @@
 package com.softserveinc.atqc.page_objects;
 
 import com.codeborne.selenide.Selenide;
+import com.softserveinc.atqc.page_elements.menu.MenuCategory;
+import com.softserveinc.atqc.page_elements.menu.SubmenuCategory;
 import io.qameta.allure.Step;
 import lombok.val;
 
@@ -14,20 +16,22 @@ public class HomePage extends BasePage {
     public HomePage open() {
         Selenide.open("https://rozetka.com.ua/");
 
-        return new HomePage(); //TODO: no need to create new object
+        return this;
     }
 
     @Step("Hover on product category in menu")
-    public HomePage hoverMenuCategory(String category) {
-        val menuCategoryXpath = format("//a[@class='menu-categories__link' and contains(@href,'%s')]", category);
+    public HomePage hoverMenuCategory(MenuCategory category) {
+        val menuCategoryXpath = format("//a[@class='menu-categories__link' and contains(@href,'%s')]",
+                category.getCategoryName());
         $x(menuCategoryXpath).hover();
 
         return this;
     }
 
     @Step("Select product subcategory in menu")
-    public ProductsListPage selectProductSubcategory(String subcategory) {
-        val subCategoryXpath = format("//a[@class='menu__link' and contains(@href,'%s')]", subcategory);
+    public ProductsListPage selectProductSubcategory(SubmenuCategory subcategory) {
+        val subCategoryXpath = format("//a[@class='menu__link' and contains(@href,'%s')]",
+                subcategory.getSubcategoryName());
         $x(subCategoryXpath).click();
 
         return new ProductsListPage();

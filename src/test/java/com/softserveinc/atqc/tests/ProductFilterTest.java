@@ -9,15 +9,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 
-import static org.testng.Assert.*;
-import static com.softserveinc.atqc.page_elements.product_filters.product_filter_values.Manufacturers.*;
 import static com.softserveinc.atqc.page_elements.menu.MenuCategory.*;
-
-import static com.softserveinc.atqc.page_elements.menu.MenuCategories.PhonesTVsElectronics;
-import static com.softserveinc.atqc.page_elements.menu.SubmenuCategories.SmartPhones;
-import static com.softserveinc.atqc.page_elements.product_filters.product_filter_values.Manufacturers.Asus;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static com.softserveinc.atqc.page_elements.menu.SubmenuCategory.*;
+import static com.softserveinc.atqc.page_elements.product_filters.product_filter_values.Manufacturer.ASUS;
+import static org.testng.Assert.*;
 
 
 public class ProductFilterTest {
@@ -32,10 +27,10 @@ public class ProductFilterTest {
     public void verifyThatFilteredItemHasCorrectPriceAndTitle() {
         val productTile = new HomePage()
                 .open()
-                .hoverMenuCategory(PHONES_TV_ELECTRONICS.getCategoryName())
-                .selectProductSubcategory(SmartPhones.getSubcategoryName())
+                .hoverMenuCategory(PHONES_TV_ELECTRONICS)
+                .selectProductSubcategory(SMARTPHONES)
                 .getManufacturerProductFilter()
-                .selectManufacturer(Asus.getName())
+                .selectManufacturer(ASUS)
                 .getPriceRangeProductFilter()
                 .setProductPriceRange(500, 15000)
                 .getTiles(1)

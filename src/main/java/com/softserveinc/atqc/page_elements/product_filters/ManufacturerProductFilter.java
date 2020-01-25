@@ -1,19 +1,22 @@
 package com.softserveinc.atqc.page_elements.product_filters;
 
+import com.softserveinc.atqc.page_elements.product_filters.product_filter_values.Manufacturer;
 import com.softserveinc.atqc.page_objects.ProductsListPage;
 import io.qameta.allure.Step;
 import lombok.val;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
+import static java.lang.String.format;
 
 public class ManufacturerProductFilter {
 
     @Step("Select manufacturer")
-    public ProductsListPage selectManufacturer(String manufacturer) {
+    public ProductsListPage selectManufacturer(Manufacturer manufacturer) {
 
-        val checkboxXpath = String.format("//a[@class='checkbox-filter__link' and contains(@href,'producer=%s')]",
-                manufacturer.toLowerCase());
+        val checkboxXpath = format("//a[@class='checkbox-filter__link' and contains(@href,'producer=%s')]",
+                manufacturer.name()
+                        .toLowerCase());
         $x(checkboxXpath).click();
 
         return new ProductsListPage();
@@ -28,7 +31,7 @@ public class ManufacturerProductFilter {
 
     @Step("Expand 'Manufacturer' filter section")
     public ManufacturerProductFilter expandManufacturerFilter() {
-        $x("//div[@class='sidebar-alphabet']/../../../button");
+        $x("//div[@class='sidebar-alphabet']/preceding::button[1]");
 
         return this;
     }

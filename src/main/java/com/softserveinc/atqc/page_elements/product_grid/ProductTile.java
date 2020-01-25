@@ -1,4 +1,4 @@
-package com.softserveinc.atqc.page_elements.items_grid;
+package com.softserveinc.atqc.page_elements.product_grid;
 
 import com.codeborne.selenide.SelenideElement;
 import com.softserveinc.atqc.page_elements.product_page_elements.ProductReviewsTab;
@@ -10,20 +10,49 @@ import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.val;
+import org.openqa.selenium.By;
 
 import static java.lang.Integer.parseInt;
 
 @Getter
 @Setter
-public class ProductTile { //TODO: pass tile element in constructor
+public class ProductTile {
     private SelenideElement productLink;
     private int productPrice;
     private String productRate;
-    private boolean isProductAvailable;
+    private boolean productAvailability;
     private SelenideElement shoppingCartButton;
     private SelenideElement addToWishListButton;
     private SelenideElement addToComparisonButton;
     private SelenideElement productReviewsLink;
+
+    public ProductTile(SelenideElement element){
+        this.productPrice = parseInt(element.
+                $x(".//span[@class='goods-tile__price-value']")
+                .getText()
+                .replaceAll("\\D", ""));
+
+        this.addToComparisonButton = element.$x(".//button[@class='compare-button']");
+
+        this.addToWishListButton = element.$x(".//button[@class='wish-button']");
+
+        this.productAvailability = element.find("div.goods-tile__availability")
+                .getAttribute("class")
+                .contains("available");
+
+        this.productLink = element.$x(".//span[@class='goods-tile__title']");
+
+        val ratingXpath = ".//div[@class='goods-tile__stars']";
+        if (element.$x(ratingXpath).exists()) {
+            this.productRate = element.$x(ratingXpath)
+                    .find("svg")
+                    .getAttribute("aria-label");
+        }
+
+        this.productReviewsLink  = element.$x(".//span[@class='goods-tile__reviews-link']");
+
+        this.shoppingCartButton = element.$x(".//button[@class='goods-tile__buy-button']");
+    }
 
     public String getProductTitle() {
 
