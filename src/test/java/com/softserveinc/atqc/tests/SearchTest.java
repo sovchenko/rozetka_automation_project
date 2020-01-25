@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.testng.Assert.assertTrue;
 
-public class SearchTest {
+public class SearchTest extends BaseTest{
 
     @Test
     public void verifyThatSearchedTermIsPresentInItemTitle() {

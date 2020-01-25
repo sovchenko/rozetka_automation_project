@@ -1,11 +1,8 @@
 package com.softserveinc.atqc.tests;
 
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import com.softserveinc.atqc.page_objects.HomePage;
 import lombok.val;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 
@@ -15,13 +12,8 @@ import static com.softserveinc.atqc.page_elements.product_filters.product_filter
 import static org.testng.Assert.*;
 
 
-public class ProductFilterTest {
+public class ProductFilterTest extends BaseTest {
 
-    @BeforeMethod
-    public void setup() {
-        Selenide.clearBrowserCookies();
-        Configuration.startMaximized = true;
-    }
 
     @Test
     public void verifyThatFilteredItemHasCorrectPriceAndTitle() {

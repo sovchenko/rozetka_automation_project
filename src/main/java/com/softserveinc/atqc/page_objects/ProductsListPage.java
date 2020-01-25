@@ -4,16 +4,26 @@ import com.codeborne.selenide.ElementsCollection;
 import com.softserveinc.atqc.page_elements.product_grid.ProductTile;
 import com.softserveinc.atqc.page_elements.product_filters.ManufacturerProductFilter;
 import com.softserveinc.atqc.page_elements.product_filters.PriceRangeProductFilter;
+import com.softserveinc.atqc.page_elements.product_grid.ProductSortingDropDown;
+import lombok.Getter;
 import lombok.val;
-import org.openqa.selenium.By;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$$x;
-import static java.lang.Integer.parseInt;
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Condition.*;
 
+@Getter
 public class ProductsListPage {
+    private ProductSortingDropDown productSortingDropDown = new ProductSortingDropDown();
+
+    public ProductsListPage() {
+        $x("//ctg-grid")
+                .waitUntil(not(attribute("class", "preloader-type-goods")),
+                        4000);
+    }
 
     public List<ProductTile> getTiles(int amount) {
         List<ProductTile> productTiles = new ArrayList<>();

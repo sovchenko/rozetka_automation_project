@@ -1,0 +1,25 @@
+<suite name="smoke" verbose="1">
+    <test name="Login Test">
+        <classes>
+            <class name="com.softserveinc.atqc.tests.LoginTest"/>
+        </classes>
+    </test>
+
+    <test name="Filter Test">
+        <classes>
+            <class name="com.softserveinc.atqc.tests.ProductFilterTest"/>
+        </classes>
+    </test>
+
+    <test name="Sorting Test">
+        <classes>
+            <class name="com.softserveinc.atqc.tests.SortingTest"/>
+        </classes>
+    </test>
+
+    <test name="Search Test">
+        <classes>
+            <class name="com.softserveinc.atqc.tests.SearchTest"/>
+        </classes>
+    </test>
+</suite>
