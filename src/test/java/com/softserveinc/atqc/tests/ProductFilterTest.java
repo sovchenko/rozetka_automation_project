@@ -10,8 +10,7 @@ import lombok.val;
 
 import static org.testng.Assert.*;
 import static com.softserveinc.atqc.page_elements.product_filters.product_filter_values.Manufacturers.*;
-import static com.softserveinc.atqc.page_elements.menu.MenuCategories.*;
-import static com.softserveinc.atqc.page_elements.menu.SubmenuCategories.*;
+import static com.softserveinc.atqc.page_elements.menu.MenuCategory.*;
 
 public class ProductFilterTest {
 
@@ -25,7 +24,7 @@ public class ProductFilterTest {
     public void verifyThatFilteredItemHasCorrectPriceAndTitle() {
         val productTile = new HomePage()
                 .open()
-                .hoverMenuCategory(PhonesTVsElectronics.getCategoryName())
+                .hoverMenuCategory(PHONES_TV_ELECTRONICS.getCategoryName())
                 .selectProductSubcategory(SmartPhones.getSubcategoryName())
                 .getManufacturerProductFilter()
                 .selectManufacturer(Asus.getName())

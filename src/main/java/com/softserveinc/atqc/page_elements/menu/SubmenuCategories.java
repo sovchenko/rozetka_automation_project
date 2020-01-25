@@ -4,7 +4,8 @@ import lombok.Getter;
 
 @Getter
 public enum SubmenuCategories {
-    SmartPhones("smartfon"), MobilePhones("mob-phones");
+    SMARTPHONES("smartfon"),
+    MOBILE_PHONES("mob-phones");
 
     private String subcategoryName;
 

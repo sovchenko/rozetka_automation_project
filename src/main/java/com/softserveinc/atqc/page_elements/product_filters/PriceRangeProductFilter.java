@@ -11,7 +11,7 @@ public class PriceRangeProductFilter {
 
     @Step("Hide price range filter")
     public PriceRangeProductFilter hidePriceRangeProductFilter() {
-        $x("//ctg-filter-slider[@class='filter_layout_sidebar']/../../../../../button").click();
+        $x("//ctg-filter-slider[@class='filter_layout_sidebar']/preceding::button[1]").click();
 
         return this;
     }

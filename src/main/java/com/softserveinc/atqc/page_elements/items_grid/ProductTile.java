@@ -6,6 +6,9 @@ import com.softserveinc.atqc.page_objects.*;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.val;
+
+import static java.lang.Integer.parseInt;
 
 @Getter
 @Setter
@@ -45,8 +48,8 @@ public class ProductTile {
         return new WishListPage();
     }
 
-    @Step("Open product's reviews")
-    public ProductReviewsTab openProductReviews() {
+    @Step("Open product's reviews tab")
+    public ProductReviewsTab openProductReviewsTab() {
         productReviewsLink.click();
 
         return new ProductReviewsTab();
@@ -60,7 +63,7 @@ public class ProductTile {
     }
 
     public int getReviewsAmount() {
-        int reviewsAmount = Integer.parseInt(
+        val reviewsAmount = parseInt(
                 productReviewsLink
                         .getText()
                         .replaceAll("\\D", ""));

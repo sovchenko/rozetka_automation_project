@@ -23,20 +23,25 @@ public class ProductsListPage {
                 .forEach(tileElement -> {
                     val productTile = new ProductTile();
 
-                    productTile.setProductPrice(
-                            parseInt(tileElement.
-                                    find(By.xpath(".//span[@class='goods-tile__price-value']"))
-                                    .getText()
-                                    .replaceAll("\\D", "")));
+                    val productPrice = parseInt(tileElement.
+                            find(By.xpath(".//span[@class='goods-tile__price-value']"))
+                            .getText()
+                            .replaceAll("\\D", ""));
+                    productTile.setProductPrice(productPrice);
 
-                    productTile.setAddToComparisonButton(tileElement.find(By.xpath(".//button[@class='compare-button']")));
-                    productTile.setAddToWishListButton(tileElement.find(By.xpath(".//button[@class='wish-button']")));
+                    val comparisonButton = tileElement.find(By.xpath(".//button[@class='compare-button']"));
+                    productTile.setAddToComparisonButton(comparisonButton);
 
-                    productTile.setProductAvailable(tileElement.find(By.cssSelector("div.goods-tile__availability"))
+                    val wishListButton = tileElement.find(By.xpath(".//button[@class='wish-button']"));
+                    productTile.setAddToWishListButton(wishListButton);
+
+                    val productAvailability = tileElement.find(By.cssSelector("div.goods-tile__availability"))
                             .getAttribute("class")
-                            .contains("available"));
+                            .contains("available");
+                    productTile.setProductAvailable(productAvailability);
 
-                    productTile.setProductLink(tileElement.find(By.xpath(".//span[@class='goods-tile__title']")));
+                    val productLink = tileElement.find(By.xpath(".//span[@class='goods-tile__title']"));
+                    productTile.setProductLink(productLink);
 
                     val ratingXpath = ".//div[@class='goods-tile__stars']";
                     if (tileElement.find(By.xpath(ratingXpath)).exists()) {
@@ -45,8 +50,12 @@ public class ProductsListPage {
                                 .getAttribute("aria-label"));
                     }
 
-                    productTile.setProductReviewsLink(tileElement.find(By.xpath(".//span[@class='goods-tile__reviews-link']")));
-                    productTile.setShoppingCartButton(tileElement.find(By.xpath(".//button[@class='goods-tile__buy-button']")));
+                    val productReviewsLink = tileElement.find(By.xpath(".//span[@class='goods-tile__reviews-link']"));
+                    productTile.setProductReviewsLink(productReviewsLink);
+
+                    val shoppingCartButton = tileElement.find(By.xpath(".//button[@class='goods-tile__buy-button']"));
+                    productTile.setShoppingCartButton(shoppingCartButton);
+
                     productTiles.add(productTile);
                 });
 

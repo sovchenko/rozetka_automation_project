@@ -2,8 +2,10 @@ package com.softserveinc.atqc.page_objects;
 
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
+import lombok.val;
 
 import static com.codeborne.selenide.Selenide.*;
+import static java.lang.String.format;
 
 public class HomePage extends BasePage {
 
@@ -16,7 +18,7 @@ public class HomePage extends BasePage {
 
     @Step("Hover on product category in menu")
     public HomePage hoverMenuCategory(String category) {
-        String menuCategoryXpath = String.format("//a[@class='menu-categories__link' and contains(@href,'%s')]", category);
+        val menuCategoryXpath = format("//a[@class='menu-categories__link' and contains(@href,'%s')]", category);
         $x(menuCategoryXpath).hover();
 
         return this;
@@ -24,7 +26,7 @@ public class HomePage extends BasePage {
 
     @Step("Select product subcategory in menu")
     public ProductsListPage selectProductSubcategory(String subcategory) {
-        String subCategoryXpath = String.format("//a[@class='menu__link' and contains(@href,'%s')]", subcategory);
+        val subCategoryXpath = format("//a[@class='menu__link' and contains(@href,'%s')]", subcategory);
         $x(subCategoryXpath).click();
 
         return new ProductsListPage();

@@ -11,14 +11,14 @@ import static java.lang.Integer.parseInt;
 public class ProductPage extends BasePage {
     private SelenideElement reviewsTab = $x("//a[@class='product__rating-reviews']");
 
-    private int removeAllNonDigitsCharactersOfTheElementText(SelenideElement element) {
+    private int parseToText(SelenideElement element) {
 
         return parseInt(element.getText().replaceAll("\\D", ""));
     }
 
     public int getItemPrice() {
 
-        return removeAllNonDigitsCharactersOfTheElementText($("p.product-prices__big"));
+        return parseToText($("p.product-prices__big"));
     }
 
     public String getItemTitle() {
@@ -32,7 +32,7 @@ public class ProductPage extends BasePage {
 
     public int getReviewsAmount() {
 
-        return removeAllNonDigitsCharactersOfTheElementText(reviewsTab);
+        return parseToText(reviewsTab);
     }
 
     public ProductReviewsTab openReviewsTab() {

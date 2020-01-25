@@ -22,8 +22,8 @@ public class LoginTest {
                 .open()
                 .getHeader()
                 .logIn("ezbooksforme@gmail.com", "Pa55word");
-        val nameOfLoggedInUser = homePage.getHeader().getLoggedInUserName();
-        assertEquals(nameOfLoggedInUser, expectedUserName);
+        val loggedInUserName = homePage.getHeader().getLoggedInUserName();
+        assertEquals(loggedInUserName, expectedUserName);
 
         homePage.getHeader().navigateToUserAccount().logOutUsingProfileLink();
         val unloggedUserName = homePage.getHeader().getLoggedInUserName();
