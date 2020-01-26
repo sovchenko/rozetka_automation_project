@@ -30,6 +30,8 @@ public class ProductSearchResultPage extends ProductsListPage {
 
     public String getSearchResultsTitle() {
 
-        return $x("//h1[@class='catalog-heading']").getText().replaceAll("[«,»]", "");
+        return $x("//h1[@class='catalog-heading']")
+                .getText()
+                .replaceAll("[«,»]", "");
     }
 }

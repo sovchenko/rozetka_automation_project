@@ -26,7 +26,7 @@ public class ProductTile {
     private SelenideElement addToComparisonButton;
     private SelenideElement productReviewsLink;
 
-    public ProductTile(SelenideElement element){
+    public ProductTile(SelenideElement element) {
         this.productPrice = parseInt(element.
                 $x(".//span[@class='goods-tile__price-value']")
                 .getText()
@@ -49,7 +49,7 @@ public class ProductTile {
                     .getAttribute("aria-label");
         }
 
-        this.productReviewsLink  = element.$x(".//span[@class='goods-tile__reviews-link']");
+        this.productReviewsLink = element.$x(".//span[@class='goods-tile__reviews-link']");
 
         this.shoppingCartButton = element.$x(".//button[@class='goods-tile__buy-button']");
     }

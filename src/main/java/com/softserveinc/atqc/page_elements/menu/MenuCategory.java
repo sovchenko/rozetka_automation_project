@@ -6,11 +6,9 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum MenuCategory {
-
     PHONES_TV_ELECTRONICS("telefony-tv-i-ehlektronika"),
     COMPUTERS_LAPTOPS("computers-notebooks");
 
     private final String categoryName;
-
 
 }

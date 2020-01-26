@@ -12,6 +12,4 @@ public enum Manufacturer {
     MEIZU,
     LG,
     ASUS;
-
-
 }

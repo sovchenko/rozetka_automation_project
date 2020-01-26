@@ -11,8 +11,8 @@ import static com.codeborne.selenide.Configuration.startMaximized;
 import static com.codeborne.selenide.Selenide.clearBrowserCookies;
 
 public class BaseTest {
-    InputStream input;
-    Properties properties;
+    private InputStream input;
+    protected Properties properties;
 
     @BeforeClass
     public void setUp() {
@@ -20,7 +20,7 @@ public class BaseTest {
         startMaximized = true;
 
         try {
-            input = new FileInputStream("/home/gizmo/IdeaProjects/rozetka_automation_project/properties");
+            input = new FileInputStream("./properties");
             properties = new Properties();
             properties.load(input);
         } catch (IOException ex) {
