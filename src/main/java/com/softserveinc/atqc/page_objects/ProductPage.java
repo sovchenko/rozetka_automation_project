@@ -6,14 +6,20 @@ import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
+import static java.lang.Integer.parseInt;
 
-public class ProductPage {
+public class ProductPage extends BasePage {
     private SelenideElement reviewsTab = $x("//a[@class='product__rating-reviews']");
 
-    public int getItemPrice() {
-        return Integer.parseInt($("p.product-prices__big")
-                .getText()
+    private int parseToText(SelenideElement element) {
+
+        return parseInt(element.getText()
                 .replaceAll("\\D", ""));
+    }
+
+    public int getItemPrice() {
+
+        return parseToText($("p.product-prices__big"));
     }
 
     public String getItemTitle() {
@@ -21,17 +27,18 @@ public class ProductPage {
     }
 
     public String getItemRate() {
+
         return $x("//app-rating-stars").find(By.cssSelector("svg")).getAttribute("aria-label");
     }
 
     public int getReviewsAmount() {
-        return Integer.parseInt(reviewsTab
-                .getText()
-                .replaceAll("\\D", ""));
+
+        return parseToText(reviewsTab);
     }
 
     public ProductReviewsTab openReviewsTab() {
         reviewsTab.click();
+
         return new ProductReviewsTab();
     }
 }

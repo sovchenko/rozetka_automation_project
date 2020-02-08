@@ -2,32 +2,26 @@ package com.softserveinc.atqc.tests;
 
 import com.softserveinc.atqc.page_objects.HomePage;
 import lombok.val;
-import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Selenide.clearBrowserCookies;
-import static org.testng.Assert.*;
-
-public class LoginTest {
-    @BeforeMethod
-    public void setUp() {
-        clearBrowserCookies();
-    }
+import static org.testng.Assert.assertEquals;
+//TODO: create parent test runner class
+//TODO: create test suite
+public class LoginTest  extends BaseTest{
 
     @Test
     public void verifySuccessfulLogIn() {
         val expectedUserName = "Тест";
         val loginLinkLabel = "увійдіть в особистий кабінет";
         val homePage = new HomePage()
-                .openHomePage()
+                .open()
                 .getHeader()
-                .logIn("ezbooksforme@gmail.com", "Pa55word");
-        val nameOfLoggedInUser = homePage.getHeader().getLoggedInUserName();
-        assertEquals(nameOfLoggedInUser, expectedUserName);
+                .logIn(properties.getProperty("userEmail"), properties.getProperty("userPassword"));
+        val loggedInUserName = homePage.getHeader().getLoggedInUserName();
+        assertEquals(loggedInUserName, expectedUserName);
 
-        homePage.getHeader().navigateToUserAccount().logOutUsingLinkInProfile();
-        val defaultLabel = homePage.getHeader().getLoggedInUserName();
-        assertEquals(defaultLabel, loginLinkLabel);
+        homePage.getHeader().navigateToUserAccount().logOutUsingProfileLink();
+        val unloggedUserName = homePage.getHeader().getLoggedInUserName();
+        assertEquals(unloggedUserName, loginLinkLabel);
     }
 }

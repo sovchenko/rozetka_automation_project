@@ -1,28 +1,39 @@
 package com.softserveinc.atqc.page_objects;
 
+import com.codeborne.selenide.Selenide;
+import com.softserveinc.atqc.page_elements.menu.MenuCategory;
+import com.softserveinc.atqc.page_elements.menu.SubmenuCategory;
 import io.qameta.allure.Step;
-import lombok.Getter;
+import lombok.val;
 
-import static com.codeborne.selenide.Selenide.*;
+import static java.lang.String.format;
+import static com.codeborne.selenide.Selenide.$x;
 
-@Getter
+
 public class HomePage extends BasePage {
 
     @Step("Open home page")
-    public HomePage openHomePage() {
-        open("https://rozetka.com.ua/");
-        return new HomePage();
+    public HomePage open() {
+        Selenide.open("https://rozetka.com.ua/");
+
+        return this;
     }
 
-    @Step("Select product category in menu")
-    public HomePage hoverMenuCategory(String category) {
-        $x("//a[@class='menu-categories__link' and contains(@href,'" + category + "')]").hover();
+    @Step("Hover on product category in menu")
+    public HomePage hoverMenuCategory(MenuCategory category) {
+        val menuCategoryXpath = format("//a[@class='menu-categories__link' and contains(@href,'%s')]",
+                category.getCategoryName());
+        $x(menuCategoryXpath).hover();
+
         return this;
     }
 
     @Step("Select product subcategory in menu")
-    public ProductsListPage selectProductSubcategory(String subcategory) {
-        $x("//a[@class='menu__link' and contains(@href,'" + subcategory + "')]").click();
+    public ProductsListPage selectProductSubcategory(SubmenuCategory subcategory) {
+        val subCategoryXpath = format("//a[@class='menu__link' and contains(@href,'%s')]",
+                subcategory.getSubcategoryName());
+        $x(subCategoryXpath).click();
+
         return new ProductsListPage();
     }
 }
