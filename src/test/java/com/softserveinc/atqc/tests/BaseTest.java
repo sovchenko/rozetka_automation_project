@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import static com.codeborne.selenide.Configuration.startMaximized;
+import static com.codeborne.selenide.Configuration.*;
 import static com.codeborne.selenide.Selenide.clearBrowserCookies;
 
 public class BaseTest {
@@ -17,6 +17,7 @@ public class BaseTest {
     @BeforeClass
     public void setUp() {
         clearBrowserCookies();
+        headless = true;
         startMaximized = true;
 
         try {
