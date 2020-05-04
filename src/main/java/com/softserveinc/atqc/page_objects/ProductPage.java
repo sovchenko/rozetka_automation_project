@@ -13,7 +13,8 @@ public class ProductPage extends BasePage {
 
     private int parseToText(SelenideElement element) {
 
-        return parseInt(element.getText().replaceAll("\\D", ""));
+        return parseInt(element.getText()
+                .replaceAll("\\D", ""));
     }
 
     public int getItemPrice() {

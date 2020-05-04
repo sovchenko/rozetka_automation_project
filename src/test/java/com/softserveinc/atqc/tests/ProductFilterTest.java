@@ -1,36 +1,27 @@
 package com.softserveinc.atqc.tests;
 
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import com.softserveinc.atqc.page_objects.HomePage;
 import lombok.val;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static com.softserveinc.atqc.page_elements.menu.MenuCategory.PHONES_TV_ELECTRONICS;
-import static com.softserveinc.atqc.page_elements.menu.SubmenuCategories.SMARTPHONES;
-import static com.softserveinc.atqc.page_elements.product_filters.product_filter_values.Manufacturers.Asus;
+import static com.softserveinc.atqc.page_elements.menu.SubmenuCategory.SMARTPHONES;
+import static com.softserveinc.atqc.page_elements.product_filters.product_filter_values.Manufacturer.ASUS;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
+public class ProductFilterTest extends BaseTest {
 
-public class ProductFilterTest {
-
-    @BeforeMethod
-    public void setup() {
-        Selenide.clearBrowserCookies();
-        Configuration.startMaximized = true;
-    }
 
     @Test
     public void verifyThatFilteredItemHasCorrectPriceAndTitle() {
         val productTile = new HomePage()
                 .open()
-                .hoverMenuCategory(PHONES_TV_ELECTRONICS.getCategoryName())
-                .selectProductSubcategory(SMARTPHONES.getSubcategoryName())
+                .hoverMenuCategory(PHONES_TV_ELECTRONICS)
+                .selectProductSubcategory(SMARTPHONES)
                 .getManufacturerProductFilter()
-                .selectManufacturer(Asus.getName())
+                .selectManufacturer(ASUS)
                 .getPriceRangeProductFilter()
                 .setProductPriceRange(500, 15000)
                 .getTiles(1)
