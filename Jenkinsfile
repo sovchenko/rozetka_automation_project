@@ -6,17 +6,22 @@ pipeline{
   stages{
     stage('Checkout code from GitHub'){
       steps{
-        echo 'Checking out code from VCS.'
-        checkout([$class: 'GitSCM', branches: [[name: '*/develop']],
-            userRemoteConfigs: [[url: 'https://github.com/sovchenko/rozetka_automation_project.git']]])
-
+        script{
+            checkout([$class: 'GitSCM',
+                       branches                         : [[name: '*/develop']],
+                       doGenerateSubmoduleConfigurations: false,
+                       extensions                       : [],
+                       submoduleCfg                     : [],
+                       userRemoteConfigs                : [[credentialsId: 'c0b16832-ec19-4153-9de3-94b917906b6b',
+                       url                              : 'https://github.com/sovchenko/rozetka_automation_project.git']]])
+        }
       }
     }
 
     stage('Running tests on my pet project'){
       steps{
         echo 'this is test stage'
-        sh 'mvn clean test -Dselenide.baseUrl=http://localhost:9090'
+        sh 'mvn clean test'
       }
 
       post{
@@ -26,7 +31,7 @@ pipeline{
       }
     }
 
-    stage('Deploy'){
+    stage('Generate allure report'){
       steps{
         echo 'this is deploy stage'
 
