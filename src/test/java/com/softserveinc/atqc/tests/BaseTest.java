@@ -17,7 +17,7 @@ public class BaseTest {
     @BeforeClass
     public void setUp() {
         clearBrowserCookies();
-        headless = true;
+        headless = false;
         startMaximized = true;
 
         try {
