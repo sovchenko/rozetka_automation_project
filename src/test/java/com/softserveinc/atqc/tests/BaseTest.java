@@ -19,6 +19,7 @@ public class BaseTest {
         clearBrowserCookies();
         headless = false;
         startMaximized = true;
+        baseUrl = "https://rozetka.com.ua/";
 
         try {
             input = new FileInputStream("./properties");

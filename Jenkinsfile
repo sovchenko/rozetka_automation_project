@@ -17,6 +17,15 @@ pipeline{
         }
       }
     }
+    stage('instal chrome'){
+        steps{
+        script {
+                  sh "curl -sSLo /home/jenkins/chrome.deb https://github.com/webnicer/chrome-downloads/raw/master/x64.deb/google-chrome-stable_${params.CHROME_VERSION}_amd64.deb"
+                  sh "sudo dpkg -i /home/jenkins/chrome.deb"
+                  sh "google-chrome --version"
+            }
+        }
+    }
 
     stage('Running tests on my pet project'){
       steps{
