@@ -1,7 +1,5 @@
 package com.softserveinc.atqc.tests;
 
-import com.codeborne.selenide.Configuration;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.BeforeClass;
 
 import java.io.FileInputStream;
@@ -18,9 +16,18 @@ public class BaseTest {
 
     @BeforeClass
     public void setUp() {
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--no-sandbox");
-        browserCapabilities.setCapability(ChromeOptions.CAPABILITY,chromeOptions);
+        System.setProperty("chromeoptions.args",
+                "--disable-browser-side-navigation," +
+                        "--disable-gpu,--dns-prefetch-disable," +
+                        "--disable-impl-side-painting," +
+                        // disables site isolation introduced in Chrome due to Spectre attacks
+                        // https://bugs.chromium.org/p/chromedriver/issues/detail?id=2660
+                        "--disable-site-isolation-trials," +
+                        "--no-sandbox," +
+                        "--disable-infobars," +
+                        "--ignore-certificate-errors," +
+                        "--disable-popup-blocking," +
+                        "--disable-notifications");
         clearBrowserCookies();
         headless = false;
         startMaximized = true;
