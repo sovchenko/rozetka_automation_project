@@ -20,8 +20,8 @@ pipeline{
     stage('install chrome'){
         steps{
         script {
-                  sh "curl -sSLo /home/jenkins/chrome.deb https://github.com/webnicer/chrome-downloads/raw/master/x64.deb/google-chrome-stable_83.0.4103.61-1_amd64.deb"
-                  sh "sudo dpkg -i /home/jenkins/chrome.deb"
+//                   sh "curl -sSLo /home/jenkins/chrome.deb https://github.com/webnicer/chrome-downloads/raw/master/x64.deb/google-chrome-stable_83.0.4103.61-1_amd64.deb"
+//                   sh "sudo dpkg -i /home/jenkins/chrome.deb"
                   sh "google-chrome --version"
             }
         }
