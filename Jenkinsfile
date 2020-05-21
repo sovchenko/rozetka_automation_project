@@ -1,4 +1,4 @@
-pipeline{
+pipeline {
   agent any
   options{
     skipStagesAfterUnstable()
@@ -49,8 +49,9 @@ pipeline{
                             jdk              : '',
                             results          : [[path: 'target/allure-results']]
                             ])
-                 }
-      }
+                    }
+                }
+            }
+        }
     }
-  }
 }
