@@ -1,5 +1,7 @@
 package com.softserveinc.atqc.tests;
 
+import com.codeborne.selenide.Configuration;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.BeforeClass;
 
 import java.io.FileInputStream;
@@ -16,6 +18,9 @@ public class BaseTest {
 
     @BeforeClass
     public void setUp() {
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--no-sandbox");
+        browserCapabilities.setCapability(ChromeOptions.CAPABILITY,chromeOptions);
         clearBrowserCookies();
         headless = false;
         startMaximized = true;
