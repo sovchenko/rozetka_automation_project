@@ -44,6 +44,7 @@ pipeline {
       steps{
         post {
             always{
+                 echo 'Allure always'
                  allure ([
                             includeProperties: false,
                             reportBuildPolicy: 'ALWAYS',
