@@ -1,60 +1,60 @@
 pipeline {
-  agent any
-  options{
-    skipStagesAfterUnstable()
-  }
-  stages{
-    stage('Checkout code from GitHub'){
-      steps{
-        script{
-            checkout([$class: 'GitSCM',
-                       branches                         : [[name: '*/develop']],
-                       doGenerateSubmoduleConfigurations: false,
-                       extensions                       : [],
-                       submoduleCfg                     : [],
-                       userRemoteConfigs                : [[credentialsId: 'c0b16832-ec19-4153-9de3-94b917906b6b',
-                       url                              : 'https://github.com/sovchenko/rozetka_automation_project.git']]])
-        }
-      }
+    agent any
+    options {
+        skipStagesAfterUnstable()
     }
-    stage('install chrome'){
-        steps{
-        script {
-//                   sh "curl -sSLo /home/jenkins/chrome.deb https://github.com/webnicer/chrome-downloads/raw/master/x64.deb/google-chrome-stable_83.0.4103.61-1_amd64.deb"
-//                   sh "sudo dpkg -i /home/jenkins/chrome.deb"
-                  sh "google-chrome --version"
+    stages {
+        stage('Checkout code from GitHub') {
+            steps {
+                script {
+                    checkout([$class                           : 'GitSCM',
+                              branches                         : [[name: '*/develop']],
+                              doGenerateSubmoduleConfigurations: false,
+                              extensions                       : [],
+                              submoduleCfg                     : [],
+                              userRemoteConfigs                : [[credentialsId: 'c0b16832-ec19-4153-9de3-94b917906b6b',
+                                                                   url          : 'https://github.com/sovchenko/rozetka_automation_project.git']]])
+                }
             }
         }
-    }
-
-    stage('Running tests on my pet project'){
-      steps{
-        echo 'this is test stage'
-        sh 'mvn clean test'
-      }
-
-      post{
-        always{
-            echo 'this is always'
+        stage('install chrome') {
+            steps {
+                script {
+//                   sh "curl -sSLo /home/jenkins/chrome.deb https://github.com/webnicer/chrome-downloads/raw/master/x64.deb/google-chrome-stable_83.0.4103.61-1_amd64.deb"
+//                   sh "sudo dpkg -i /home/jenkins/chrome.deb"
+                    sh "google-chrome --version"
+                }
+            }
         }
-      }
-    }
 
-    stage('Deploy'){
-      steps{
-        echo 'deploy has been done'
+        stage('Running tests on my pet project') {
+            steps {
+                echo 'this is test stage'
+                sh 'mvn clean test'
+            }
+
+            post {
+                always {
+                    echo 'this is always'
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'deploy has been done'
             }
         }
     }
     post {
-                always{
-                     echo 'Allure always'
-                     allure ([
-                                includeProperties: false,
-                                reportBuildPolicy: 'ALWAYS',
-                                jdk              : '',
-                                results          : [[path: 'allure-results']]
-                                ])
-                        }
-              }
+        always {
+            echo 'Allure always'
+            allure([
+                    includeProperties: false,
+                    reportBuildPolicy: 'ALWAYS',
+                    jdk              : '',
+                    results          : [[path: 'allure-results']]
+            ])
+        }
+    }
 }
