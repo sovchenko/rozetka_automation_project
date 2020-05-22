@@ -36,6 +36,7 @@ pipeline {
         stage('Running tests on my pet project') {
             steps {
                 echo 'this is test stage'
+                sh 'Xvfb :1 -screen 0 1920x1080x24&'
                 sh 'mvn clean test'
             }
 
