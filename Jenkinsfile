@@ -3,6 +3,12 @@ pipeline {
     options {
         skipStagesAfterUnstable()
     }
+    triggers{
+        // build is made every day from Monday to Friday
+        // at 10:24 am
+        cron('24 10 * * 1-5')
+    }
+
     stages {
         stage('Checkout code from GitHub') {
             steps {
