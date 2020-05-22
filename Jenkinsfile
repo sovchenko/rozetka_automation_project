@@ -36,9 +36,10 @@ pipeline {
         stage('Running tests on my pet project') {
             steps {
                 script {
-                    wrap([$class: 'Xvfb',
-                          debug : true,
-                          screen: '1920x1080x24']) {
+                    wrap([$class     : 'Xvfb',
+                          debug      : true,
+                          screen     : '1920x1080x24',
+                          displayName: 1]) {
                         echo 'this is test stage'
                         sh 'mvn clean test'
                     }
