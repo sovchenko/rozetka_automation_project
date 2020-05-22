@@ -6,7 +6,7 @@ pipeline {
     triggers {
         // build is made every day from Monday to Friday
         // at 10:24 am
-        cron('24 10 * * 1-5')
+        cron('03 14 * * 1-5')
     }
 
     stages {
@@ -19,7 +19,8 @@ pipeline {
                               extensions                       : [],
                               submoduleCfg                     : [],
                               userRemoteConfigs                : [[credentialsId: 'c0b16832-ec19-4153-9de3-94b917906b6b',
-                                                                   url          : 'https://github.com/sovchenko/rozetka_automation_project.git']]])
+                                                                   url          : 'https://github.com/sovchenko/rozetka_automation_project.git']]
+                    ])
                 }
             }
         }
