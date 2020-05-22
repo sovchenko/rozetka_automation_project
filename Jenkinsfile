@@ -3,7 +3,7 @@ pipeline {
     options {
         skipStagesAfterUnstable()
     }
-    triggers{
+    triggers {
         // build is made every day from Monday to Friday
         // at 10:24 am
         cron('24 10 * * 1-5')
@@ -35,9 +35,15 @@ pipeline {
 
         stage('Running tests on my pet project') {
             steps {
-                echo 'this is test stage'
-                sh 'Xvfb :1 -screen 0 1920x1080x24&'
-                sh 'mvn clean test'
+                script {
+                    wrap([$class: 'Xvfb',
+                          debug : true,
+                          screen: '1920x1080x24']) {
+                        echo 'this is test stage'
+                        sh 'mvn clean test'
+                    }
+                }
+
             }
 
             post {
